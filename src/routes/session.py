@@ -28,7 +28,7 @@ def new_session():
 
 
 @session_routes.get("/session")
-@Auth.requires_payload({"token"})
+@StatefulSession.requires_token
 def get_session():
 	try:
 		session_data = StatefulSession.get_data(request.json["token"])
