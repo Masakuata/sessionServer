@@ -5,6 +5,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from src.Config.RemoteConfig import RemoteConfig
+from src.routes.session import session_routes
 
 
 def init_config(app: Flask) -> Any:
@@ -16,5 +17,7 @@ def init_config(app: Flask) -> Any:
 	# app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=config["TLT"])
 	app.host = config["HOST"]
 	app.port = config["PORT"]
+
+	app.register_blueprint(session_routes)
 
 	return app
