@@ -1,3 +1,5 @@
+import socket
+
 from flask import Flask, make_response
 from xf_auth.Auth import Auth
 
@@ -13,7 +15,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-	return "Hello world"
+	return f"Hello world from {socket.gethostname()}"
 
 
 @app.route("/", defaults={"path": ""})

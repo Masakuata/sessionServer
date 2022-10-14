@@ -13,7 +13,7 @@ def init_config(app: Flask) -> Any:
 	config: dict = RemoteConfig.load_whole()
 
 	app.config["SECRET_KEY"] = config["SECRET_KEY"]
-	app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=config["TLT"])
+	# app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=config["TLT"])
 	app.host = config["HOST"]
 	app.port = config["PORT"]
 
