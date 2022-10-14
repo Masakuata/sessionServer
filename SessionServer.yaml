@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: SessionServer
+  description: A microservice that provides services to hold logged in users sessions
+  version: 0.1.0
+  contact:
+    name: Edson Manuel Carballo Vera
+    email: edsonmanuelcarballovera@gmail.com
+servers:
+  - url: 'http://clayrite.ddns.net:42100'
+    description: To be deployed
+paths:
+  /session:
+    summary: Endpoint to manage users sessions
+    post:
+      summary: Creates a new session for a user
+      tags:
+        - New session
+      description: Creates a new session to hold critical data for the user
+      responses:
+        '201':
+          description: A new session has been created and a token session returned
+          content:
+            application/json:
+              schema:
+                properties:
+                  token:
+                    description: Session identifying token
+                    type: string
+        '400':
+          description: 'Request is invalid, wrong or malformed'
+        '406':
+          description: Request is not acceptable. Verify the payload
+    get:
+      summary: Retrieves information about the session given a token
+      tags:
+        - Recover session
+      requestBody:
+        description: Session token to retrieve user info
+        content:
+          application/json:
+            schema:
+              properties:
+                token:
+                  type: string
+                  description: Session identifying token (its a very large string)
+        required: true
+      responses:
+        '200':
+          description: Session was found and information returned
+          content:
+            application/json:
+              schema:
+                type: object
+                description: User information required to make a session
+                required:
+                  - email
+                  - password
+                  - role
+                properties:
+                  email:
+                    type: string
+                    description: User email. Functions as ID
+                    minLength: 5
+                    maxLength: 320
+                    example: email@mail.com
+                  password:
+                    type: string
+                    description: User password. Will be stored encrypted
+                    minLength: 8
+                    maxLength: 100
+                    example: g00dP4ssw0rD
+                  role:
+                    type: string
+                    description: 'User role in the system, if any. If none, set to null'
+                    minLength: 2
+                    maxLength: 40
+                    example: admin
+        '400':
+          description: 'Request is invalid, wrong or malformed'
+        '404':
+          description: Session data was not found. User has not logged in
+        '406':
+          description: Request is not acceptable. Verify the payload
+    delete:
+      summary: Ends a session on the server
+      description: Ends the session of the user identified by its session token
+      tags:
+        - Log out
+      requestBody:
+        description: Session token to identify the user to log out
+        content:
+          application/json:
+            schema:
+              properties:
+                token:
+                  type: string
+                  description: Session identifying token (its a very large string)
+        required: true
+      responses:
+        '200':
+          description: The session has ended and the user data has been erased
+        '400':
+          description: 'Request is invalid, wrong or malformed'
+        '404':
+          description: Session data was not found. User has not logged in
+        '406':
+          description: Request is not acceptable. Verify the payload
