@@ -31,7 +31,7 @@ def new_session():
 @StatefulSession.requires_token
 def get_session():
 	try:
-		session_data = StatefulSession.get_data(request.json["token"])
+		session_data = StatefulSession.get_data(request.headers.get("token"))
 	except TypeError:
 		session_data = None
 
@@ -43,4 +43,13 @@ def get_session():
 		)
 	else:
 		response = Response(status=NOT_FOUND)
+	return response
+
+
+@session_routes.delete("/session")
+@StatefulSession.requires_token
+def delete_session():
+	response = Response(status=NOT_FOUND)
+	if StatefulSession.delete_session(request.headers.get("token")):
+		response = Response(status=OK)
 	return response

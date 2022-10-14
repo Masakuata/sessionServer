@@ -1,0 +1,10 @@
+name = "xf-SessionServer"
+version = "1.0.0"
+description = "A microservice to handle user sessions and session information"
+license = "MIT"
+authors = [
+    "Edson Manuel Carballo Vera <edsonmanuelcarballovera@gmail.com>",
+]
+maintainers = [
+    "Edson Manuel Carballo Vera <edsonmanuelcarballovera@gmail.com>"
+]

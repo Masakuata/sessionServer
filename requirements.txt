@@ -12,5 +12,5 @@ pycparser==2.21
 pymongo==4.2.0
 six==1.16.0
 Werkzeug==2.2.2
-xf-auth==0.5.1
+xf-auth==0.5.3
 zipp==3.9.0
