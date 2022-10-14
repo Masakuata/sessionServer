@@ -31,7 +31,7 @@ get:
             token:
               type: string
               description: Session identifying token (its a very large string)
-              required: true
+    required: true
   responses:
     200:
       description: Session was found and information returned
@@ -59,7 +59,7 @@ delete:
             token:
               type: string
               description: Session identifying token (its a very large string)
-              required: true
+    required: true
   responses:
     200:
       description: The session has ended and the user data has been erased

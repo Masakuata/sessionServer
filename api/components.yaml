@@ -3,6 +3,7 @@ components:
     user:
       type: object
       description: User information required to make a session
+      required: [email, password, role]
       properties:
         email:
           type: string
@@ -10,18 +11,15 @@ components:
           minLength: 5
           maxLength: 320
           example: email@mail.com
-          required: true
         password:
           type: string
           description: User password. Will be stored encrypted
           minLength: 8
           maxLength: 100
           example: g00dP4ssw0rD
-          required: true
         role:
           type: string
           description: User role in the system, if any. If none, set to null
           minLength: 2
           maxLength: 40
           example: admin
-          required: true
