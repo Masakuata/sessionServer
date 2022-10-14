@@ -22,16 +22,13 @@ get:
   summary: Retrieves information about the session given a token
   tags:
     - Recover session
-  requestBody:
-    description: Session token to retrieve user info
-    content:
-      application/json:
-        schema:
-          properties:
-            token:
-              type: string
-              description: Session identifying token (its a very large string)
-    required: true
+  parameters:
+    - name: token
+      description: Session identifying token (its a very large string)
+      in: header
+      schema:
+        type: string
+      required: true
   responses:
     200:
       description: Session was found and information returned
@@ -50,16 +47,13 @@ delete:
   description: Ends the session of the user identified by its session token
   tags:
     - Log out
-  requestBody:
-    description: Session token to identify the user to log out
-    content:
-      application/json:
-        schema:
-          properties:
-            token:
-              type: string
-              description: Session identifying token (its a very large string)
-    required: true
+  parameters:
+    - name: token
+      description: Session identifying token (its a very large string)
+      in: header
+      schema:
+        type: string
+      required: true
   responses:
     200:
       description: The session has ended and the user data has been erased
