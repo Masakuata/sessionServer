@@ -1,0 +1,14 @@
+openapi: 3.0.3
+info:
+  title: SessionServer
+  description: A microservice that provides services to hold logged in users sessions
+  version: 0.1.0
+  contact:
+    name: Edson Manuel Carballo Vera
+    email: edsonmanuelcarballovera@gmail.com
+servers:
+  - url: 'http://clayrite.ddns.net:42100'
+    description: To be deployed
+paths:
+  /session:
+    $ref: './session.yaml'
