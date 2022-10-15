@@ -46,6 +46,12 @@ def get_session():
 	return response
 
 
+@session_routes.put("/session")
+@StatefulSession.requires_token
+def is_alive():
+	return Response(status=OK)
+
+
 @session_routes.delete("/session")
 @StatefulSession.requires_token
 def delete_session():
