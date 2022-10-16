@@ -2,13 +2,14 @@ openapi: 3.0.3
 info:
   title: SessionServer
   description: A microservice that provides services to hold logged in users sessions
-  version: 0.1.0
+  version: 1.3.1
   contact:
     name: Edson Manuel Carballo Vera
     email: edsonmanuelcarballovera@gmail.com
+    url: 'https://twitter.com/EdsonManuelVera'
 servers:
   - url: 'http://clayrite.ddns.net:42100'
-    description: To be deployed
+    description: Alpha testing
 paths:
   /session:
     summary: Endpoint to manage users sessions
@@ -17,6 +18,34 @@ paths:
       tags:
         - New session
       description: Creates a new session to hold critical data for the user
+      requestBody:
+        description: Required information to create new session
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  description: Email of the user
+                  minLength: 5
+                  maxLength: 320
+                  example: email@email.com
+                password:
+                  type: string
+                  description: Password of the user
+                  minLength: 8
+                  maxLength: 100
+                  example: g00dP4ssw0rD
+                role:
+                  type: string
+                  description: Role of the user
+                  minLength: 3
+                  maxLength: 100
+                  example: Admin
       responses:
         '201':
           description: A new session has been created and a token session returned
@@ -79,6 +108,60 @@ paths:
           description: Session data was not found. User has not logged in
         '406':
           description: Request is not acceptable. Verify the payload
+        '419':
+          description: The session has expired
+    put:
+      summary: Verifies if the session is alive in the remote server
+      tags:
+        - Is alive
+      parameters:
+        - name: token
+          description: Session identifying token (its a very large string)
+          in: header
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Session is alive on the remote server
+        '400':
+          description: 'Request is invalid, wrong or malformed'
+        '404':
+          description: The session was not found on the server
+        '419':
+          description: The session has expired
+    patch:
+      summary: Updates the session information
+      tags:
+        - Stored data
+      parameters:
+        - name: token
+          description: Session identifying token (its a very large string)
+          in: header
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: New information to store on the session
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The new information has been saved
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Request is invalid, wrong or malformed'
+        '404':
+          description: Session was not found
+        '406':
+          description: Request is not acceptable. Verify the payload
+        '419':
+          description: The session has expired
     delete:
       summary: Ends a session on the server
       description: Ends the session of the user identified by its session token
@@ -100,3 +183,5 @@ paths:
           description: Session data was not found. User has not logged in
         '406':
           description: Request is not acceptable. Verify the payload
+        '419':
+          description: The session has expired
