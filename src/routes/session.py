@@ -1,9 +1,9 @@
 import json
 
 from flask import Blueprint, request, Response
-from xf_auth.Auth import Auth
-from xf_auth.HTTPStatus import RESOURCE_CREATED, OK, NOT_FOUND, NOT_ACCEPTABLE
-from xf_auth.StatefulSession import StatefulSession
+from xfss.Auth import Auth
+from xfss.HTTPStatus import RESOURCE_CREATED, OK, NOT_FOUND, NOT_ACCEPTABLE
+from xfss.StatefulSession import StatefulSession
 
 from src.Model.User import User
 

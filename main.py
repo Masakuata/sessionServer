@@ -1,7 +1,7 @@
 import socket
 
 from flask import Flask, make_response
-from xf_auth.Auth import Auth
+from xfss.Auth import Auth
 
 from src.Config.InitApp import init_config
 from src.Model.User import User

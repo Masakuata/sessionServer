@@ -9,7 +9,7 @@
 project = 'XFSessionServer'
 copyright = '2022, Edson Manuel Carballo Vera'
 author = 'Edson Manuel Carballo Vera'
-release = '1.3.1'
+release = '1.4.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

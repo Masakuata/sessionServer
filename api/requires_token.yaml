@@ -1,0 +1,23 @@
+summary: An auxiliary path if you need to verify a token
+get:
+  description: Provide the token and check if is valid
+  tags:
+    - Required log in
+  parameters:
+    - name: token
+      description: Session identifying token (its a very large string)
+      schema:
+        type: string
+      required: true
+      in: header
+  responses:
+    200:
+      description: The session token is valid and the session is still alive
+    400:
+      description: Request is invalid, wrong or malformed
+    404:
+      description: The session was not found
+    406:
+      description: The token is invalid
+    419:
+      description: The session has expired

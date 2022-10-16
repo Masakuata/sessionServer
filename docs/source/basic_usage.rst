@@ -1,12 +1,12 @@
-Usage
-=====
-
-.. _installation:
+Basic Usage
+===========
 
 .. warning::
 
     Before proceeding, be sure that you want to connect to a XFSessionServer
     type. This library just works with that kind of server.
+
+.. _installation:
 
 Installation
 ------------
@@ -116,13 +116,12 @@ Keep in mind that all the info you send will only be stored while the session
 is alive.
 
 The ``response`` variable holds the server response (duh!).
-It is a tuple that could hold one value, or two, depending on whether the
-request was successful.
+It is a dictionary that holds two values, an HTTP ``STATUS`` and (possibly) a ``TOKEN``.
 
-If the request was successful and a new session was created, the first position
-of the tuple holds an HTTP status code of 201, and the second position holds a
-string. This string is the *session token*. Keep it in a safe place, cause you
-will need it for every future request regarding the session you just created.
+If the request was successful and a new session was created, the ``STATUS`` key
+holds an HTTP status code of 201, and the ``TOKEN`` key a string.
+This string is the *session token*. Keep it in a safe place, cause you will need
+it for every future request regarding the session you just created.
 
 This token is like a session ID of sorts. Yeah! That's it!
 

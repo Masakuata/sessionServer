@@ -8,6 +8,13 @@ Welcome to XFSessionServer's documentation!
 **XFSessionServer** is a REST service that helps you handle users sessions and
 store session information remotely with *minimal configuration*.
 
+As you read this documentation, you'll get to see that we did all of this
+in the easiest way possible for you. Almost everything in this library
+can be done in just one line.
+
+All of this was done with love for the dev community.
+Be sure to check out the `repo <https://github.com/Masakuata/sessionServer>`_
+
 .. note::
 
    This service is still not ready for public usage!
@@ -20,7 +27,8 @@ To start check out the :ref:`installation <installation>` guide.
    :maxdepth: 2
    :caption: Contents:
 
-   usage
+   basic_usage
+   routing
 
 
 Indices and tables

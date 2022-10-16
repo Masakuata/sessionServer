@@ -4,6 +4,7 @@ from flask import Flask
 from flask_cors import CORS
 
 from src.Config.RemoteConfig import RemoteConfig
+from src.routes.requirements import requirements_routes
 from src.routes.session import session_routes
 
 
@@ -18,5 +19,6 @@ def init_config(app: Flask) -> Any:
 	app.port = config["PORT"]
 
 	app.register_blueprint(session_routes)
+	app.register_blueprint(requirements_routes)
 
 	return app

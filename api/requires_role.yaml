@@ -1,0 +1,38 @@
+summary: An auxiliary path if you need to check the user role
+get:
+  description: Provide the role you need to access a route
+  tags:
+    - Required role
+  parameters:
+    - name: token
+      description: Session identifying token (its a very large string)
+      schema:
+        type: string
+      required: true
+      in: header
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [role]
+          properties:
+            role:
+              type: string
+              description: The required role for the route
+              minLength: 2
+              maxLength: 100
+    required: true
+  responses:
+    200:
+      description: The required role matches the user role
+    400:
+      description: Request is invalid, wrong or malformed
+    403:
+      description: The user does not have the required role
+    404:
+      description: The session was not found
+    406:
+      description: Request is not acceptable. Verify the payload
+    419:
+      description: The session has expired
