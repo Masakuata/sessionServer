@@ -17,7 +17,7 @@ def new_session():
 	user.email = request.json["email"]
 	user.set_password(request.json["password"], True)
 	if "role" in request.json:
-		user.role = request.json
+		user.role = request.json["role"]
 
 	token = StatefulSession.new_session(user.__dict__)
 
