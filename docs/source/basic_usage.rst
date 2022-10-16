@@ -15,7 +15,7 @@ You can install the required libraries to use a remote session server with pip:
 
 .. code-block:: console
 
-    $ pip install xf-auth
+    $ pip install xfss
 
 As simple as that!
 
@@ -33,8 +33,8 @@ To get started, import the RemoteSession and Auth classes.
 .. code-block:: python3
    :linenos:
 
-    from xf_auth.Auth import Auth
-    from xf_auth.RemoteSession import RemoteSession
+    from xfss.Auth import Auth
+    from xfss.RemoteSession import RemoteSession
 
 Then, you have to indicate a couple of values, and you're off to the races!
 

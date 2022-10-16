@@ -35,5 +35,5 @@ sphinxcontrib-serializinghtml==1.1.5
 urllib3==1.26.12
 validators==0.20.0
 Werkzeug==2.2.2
-xfss==0.8.3
+xfss==0.8.4
 zipp==3.9.0
