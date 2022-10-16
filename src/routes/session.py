@@ -11,12 +11,13 @@ session_routes = Blueprint("session_routes", __name__)
 
 
 @session_routes.post("/session")
-@Auth.requires_payload({"email", "password", "role"})
+@Auth.requires_payload({"email", "password"})
 def new_session():
 	user = User()
 	user.email = request.json["email"]
 	user.set_password(request.json["password"], True)
-	user.role = request.json["role"]
+	if "role" in request.json:
+		user.role = request.json
 
 	token = StatefulSession.new_session(user.__dict__)
 
