@@ -2,7 +2,7 @@ import json
 
 from flask import Blueprint, request, Response
 from xf_auth.Auth import Auth
-from xf_auth.HTTPStatus import RESOURCE_CREATED, OK, NOT_FOUND
+from xf_auth.HTTPStatus import RESOURCE_CREATED, OK, NOT_FOUND, NOT_ACCEPTABLE
 from xf_auth.StatefulSession import StatefulSession
 
 from src.Model.User import User
@@ -51,6 +51,22 @@ def get_session():
 @StatefulSession.requires_token
 def is_alive():
 	return Response(status=OK)
+
+
+@session_routes.patch("/session")
+@StatefulSession.requires_token
+def update_session():
+	response = Response(status=NOT_ACCEPTABLE)
+	new_data = None
+	if request.json:
+		new_data = StatefulSession.update_data(request.headers.get("token"), request.json)
+	if new_data:
+		response = Response(
+			json.dumps(new_data),
+			status=OK,
+			mimetype="application/json"
+		)
+	return response
 
 
 @session_routes.delete("/session")

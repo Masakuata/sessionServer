@@ -68,6 +68,23 @@ get:
       description: Session data was not found. User has not logged in
     406:
       description: Request is not acceptable. Verify the payload
+put:
+  summary: Verifies if the session is alive in the remote server
+  tags:
+    - Is alive
+  parameters:
+    - name: token
+      description: Session identifying token (its a very large string)
+      in: header
+      schema:
+        type: string
+      required: true
+  responses:
+    200:
+      description: Session is alive on the remote server
+    400:
+      description: Request is invalid, wrong or malformed
+    404:
 delete:
   summary: Ends a session on the server
   description: Ends the session of the user identified by its session token
