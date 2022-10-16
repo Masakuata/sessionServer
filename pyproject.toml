@@ -1,5 +1,5 @@
 name = "XFSessionServer"
-version = "1.4.0"
+version = "1.4.1"
 description = "A microservice to handle user sessions and session information"
 license = "MIT"
 authors = [

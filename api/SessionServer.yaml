@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: XFSessionServer
   description: A microservice that provides services to hold logged in users sessions
-  version: 1.4.0
+  version: 1.4.1
   contact:
     name: Edson Manuel Carballo Vera
     email: edsonmanuelcarballovera@gmail.com
