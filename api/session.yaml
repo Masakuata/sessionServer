@@ -68,6 +68,8 @@ get:
       description: Session data was not found. User has not logged in
     406:
       description: Request is not acceptable. Verify the payload
+    419:
+      description: The session has expired
 put:
   summary: Verifies if the session is alive in the remote server
   tags:
@@ -85,6 +87,41 @@ put:
     400:
       description: Request is invalid, wrong or malformed
     404:
+      description: The session was not found on the server
+    419:
+      description: The session has expired
+patch:
+  summary: Updates the session information
+  tags:
+    - Stored data
+  parameters:
+    - name: token
+      description: Session identifying token (its a very large string)
+      in: header
+      schema:
+        type: string
+      required: true
+  requestBody:
+    description: New information to store on the session
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    200:
+      description: The new information has been saved
+      content:
+        application/json:
+          schema:
+            type: object
+    400:
+      description: Request is invalid, wrong or malformed
+    404:
+      description: Session was not found
+    406:
+      description: Request is not acceptable. Verify the payload
+    419:
+      description: The session has expired
 delete:
   summary: Ends a session on the server
   description: Ends the session of the user identified by its session token
@@ -106,3 +143,5 @@ delete:
       description: Session data was not found. User has not logged in
     406:
       description: Request is not acceptable. Verify the payload
+    419:
+      description: The session has expired
