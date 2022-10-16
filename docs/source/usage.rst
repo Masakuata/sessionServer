@@ -166,6 +166,26 @@ Pass it to the function shown above and it will take your information back.
 
 Easy, right?
 
+.. _update_data:
+
+Update session data
+-------------------
+
+You have sent the wrong information?
+Don't worry. We can change it easily.
+
+.. code-block:: python3
+
+    new_data = {
+        "birthday": "10/19/1999",
+        "is_admin": True
+    }
+    RemoteSession.update_data(token, new_data)
+
+Just like that we can send the ``new_data`` to replace the old one in the server.
+
+It's like magic!
+
 .. _check_session:
 
 Is the session alive?
