@@ -76,7 +76,7 @@ Then we need to indicate the ``role`` attribute.
 The role attribute can be of any primitive type.
 
 In the 7th line, we supply the address for the remote session server.
-It can be any type of URL or and IPv4 or IPv6 address.
+It can be any type of URl, IPv4 or IPv6 address.
 
 Lastly, the 8th line is optional. If you need to specify a port, you set it here.
 It can be a string or an integer.
@@ -133,11 +133,11 @@ In code would look something like this:
 .. code-block:: python3
 
     response = RemoteSession.init_session(payload)
-    status_code = response[0]
+    status_code = response["STATUS"]
 
     if status_code == 201:
         # Yay! We got a token
-        token = response[1]
+        token = response["TOKEN"]
     else:
         # The request failed. Let's see why
         # Proceed to handle the HTTP status code as you see fit
