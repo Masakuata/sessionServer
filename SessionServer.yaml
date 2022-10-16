@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: XFSessionServer
   description: A microservice that provides services to hold logged in users sessions
-  version: 1.3.1
+  version: 1.4.0
   contact:
     name: Edson Manuel Carballo Vera
     email: edsonmanuelcarballovera@gmail.com
@@ -181,6 +181,70 @@ paths:
           description: 'Request is invalid, wrong or malformed'
         '404':
           description: Session data was not found. User has not logged in
+        '406':
+          description: Request is not acceptable. Verify the payload
+        '419':
+          description: The session has expired
+  /requires_token:
+    summary: An auxiliary path if you need to verify a token
+    get:
+      description: Provide the token and check if is valid
+      tags:
+        - Required log in
+      parameters:
+        - name: token
+          description: Session identifying token (its a very large string)
+          schema:
+            type: string
+          required: true
+          in: header
+      responses:
+        '200':
+          description: The session token is valid and the session is still alive
+        '400':
+          description: 'Request is invalid, wrong or malformed'
+        '404':
+          description: The session was not found
+        '406':
+          description: The token is invalid
+        '419':
+          description: The session has expired
+  /requires_role:
+    summary: An auxiliary path if you need to check the user role
+    get:
+      description: Provide the role you need to access a route
+      tags:
+        - Required role
+      parameters:
+        - name: token
+          description: Session identifying token (its a very large string)
+          schema:
+            type: string
+          required: true
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - role
+              properties:
+                role:
+                  type: string
+                  description: The required role for the route
+                  minLength: 2
+                  maxLength: 100
+        required: true
+      responses:
+        '200':
+          description: The required role matches the user role
+        '400':
+          description: 'Request is invalid, wrong or malformed'
+        '403':
+          description: The user does not have the required role
+        '404':
+          description: The session was not found
         '406':
           description: Request is not acceptable. Verify the payload
         '419':
