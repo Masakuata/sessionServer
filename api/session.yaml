@@ -4,6 +4,32 @@ post:
   tags:
     - New session
   description: Creates a new session to hold critical data for the user
+  requestBody:
+    description: Required information to create new session
+    content:
+      application/json:
+        schema:
+          type: object
+          required: [ email, password ]
+          properties:
+            email:
+              type: string
+              description: Email of the user
+              minLength: 5
+              maxLength: 320
+              example: email@email.com
+            password:
+              type: string
+              description: Password of the user
+              minLength: 8
+              maxLength: 100
+              example: g00dP4ssw0rD
+            role:
+              type: string
+              description: Role of the user
+              minLength: 3
+              maxLength: 100
+              example: Admin
   responses:
     201:
       description: A new session has been created and a token session returned
